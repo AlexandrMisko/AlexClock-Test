@@ -13,5 +13,3 @@ now_at = datetime.datetime.now() + datetime.timedelta(hours=8)
 print(f'https://www.instagram.com/p/{shortcode}')
 print(taken_at)
 print(now_at)
-if taken_at < now_at:
-    print('该更新了')

@@ -8,7 +8,7 @@ resp = requests.get('https://i.instagram.com/api/v1/users/web_profile_info/?user
 shortcode = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][1]['node']['shortcode']
 taken_stamp = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][1]['node']['taken_at_timestamp']
 taken_at = datetime.datetime.fromtimestamp(taken_stamp) + datetime.timedelta(hours=8)
-taken_stamp = datetime.date(taken_at).timestamp()
+taken_stamp = datetime.mktime(taken_at)
 now_at = int(datetime.datetime.now().timestamp())
 print(f'https://www.instagram.com/p/{shortcode}')
 print(taken_stamp)

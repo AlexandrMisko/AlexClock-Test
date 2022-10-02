@@ -72,4 +72,3 @@ else:
     yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（图片或视频--直接打开即可）：</h1>'+contents)
     yag.close()
     print('发送邮件成功！')
-    

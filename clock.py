@@ -10,18 +10,18 @@ resp = requests.get('https://i.instagram.com/api/v1/users/web_profile_info/?user
     'Cookie': cookie
 })
 taken_stamp = ['']*4
-taken_stamp[0] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][3]['node']['taken_at_timestamp']
-taken_stamp[1] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][4]['node']['taken_at_timestamp']
-taken_stamp[2] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][5]['node']['taken_at_timestamp']
-taken_stamp[3] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][6]['node']['taken_at_timestamp']
+taken_stamp[0] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][0]['node']['taken_at_timestamp']
+taken_stamp[1] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][1]['node']['taken_at_timestamp']
+taken_stamp[2] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][2]['node']['taken_at_timestamp']
+taken_stamp[3] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][3]['node']['taken_at_timestamp']
 rank = 0
 for i in range(1,4):
     if taken_stamp[0] < taken_stamp[i]:
         taken_stamp[0] = taken_stamp[i]
         rank = i
 taken_at = (datetime.datetime.fromtimestamp(taken_stamp[rank]) + datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
-id = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank+3]['node']['id']
-shortcode = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank+3]['node']['shortcode']
+id = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank]['node']['id']
+shortcode = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank]['node']['shortcode']
 # now_at = (datetime.datetime.now() + datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
 # print(now_at)
 url = f'https://www.instagram.com/p/{shortcode}'
@@ -90,6 +90,6 @@ else:
                     f.write(resp_bytes.content)
                 attachments.append(f'video_{video_num}.mp4')
                 video_num += 1
-    yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（图片或视频--直接打开即可）：</h1>'+contents, attachments=attachments)
+    yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（在线--直接打开即可）：</h1>'+contents+'<h1>方式3（下载--查看下方附件）：</h1>', attachments=attachments)
     yag.close()
     print('发送邮件成功！')

@@ -10,18 +10,18 @@ resp = requests.get('https://i.instagram.com/api/v1/users/web_profile_info/?user
     'Cookie': cookie
 })
 taken_stamp = ['']*4
-taken_stamp[0] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][8]['node']['taken_at_timestamp']
-taken_stamp[1] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][9]['node']['taken_at_timestamp']
-taken_stamp[2] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][10]['node']['taken_at_timestamp']
-taken_stamp[3] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][11]['node']['taken_at_timestamp']
+taken_stamp[0] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][3]['node']['taken_at_timestamp']
+taken_stamp[1] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][4]['node']['taken_at_timestamp']
+taken_stamp[2] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][5]['node']['taken_at_timestamp']
+taken_stamp[3] = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][6]['node']['taken_at_timestamp']
 rank = 0
 for i in range(1,4):
     if taken_stamp[0] < taken_stamp[i]:
         taken_stamp[0] = taken_stamp[i]
         rank = i
 taken_at = (datetime.datetime.fromtimestamp(taken_stamp[rank]) + datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
-id = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank+8]['node']['id']
-shortcode = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank+8]['node']['shortcode']
+id = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank+3]['node']['id']
+shortcode = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges'][rank+3]['node']['shortcode']
 # now_at = (datetime.datetime.now() + datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
 # print(now_at)
 url = f'https://www.instagram.com/p/{shortcode}'

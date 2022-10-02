@@ -67,7 +67,7 @@ else:
         attachments = 'video.mp4'
     elif media_type == 2:
         contents = '<button type="button"><a href='+resp.json()['items'][0]['image_versions2']['candidates'][0]['url']+'>图片</a></button>'
-        resp_bytes = requests.get(resp.json()['items'][0]['video_versions'][0]['url'])
+        resp_bytes = requests.get(resp.json()['items'][0]['image_versions2']['candidates'][0]['url'])
         with open('image.jpg', 'wb') as f:
             f.write(resp_bytes.content)
         attachments = 'image.jpg'

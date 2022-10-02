@@ -57,9 +57,9 @@ else:
     })
     contents = ''
     media_type = resp.json()['items'][0]['media_type']
-    if media_type == 1:
+    if media_type == 2:
         contents = '<button type="button"><a href='+resp.json()['items'][0]['video_versions'][0]['url']+'>视频</a></button>'
-    elif media_type == 2:
+    elif media_type == 1:
         contents = '<button type="button"><a href='+resp.json()['items'][0]['image_versions2']['candidates'][0]['url']+'>图片</a></button>'
     else:
         items = resp.json()['items'][0]['carousel_media']

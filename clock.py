@@ -57,7 +57,7 @@ else:
         'Cookie': 'csrftoken=UcTWfv2NroJABRj4dIWfe38eRpb1CXU1; mid=YZIUAwALAAHIMaHw27iWm4uRNhXm; ig_did=267B8A84-7E4C-4AE8-8310-89537C6AE002; ig_nrcb=1; ds_user_id=48282355544; sessionid=48282355544%3AuWW0eZDfR8CL3u%3A27%3AAYdStGPAuKILQTiONRS6ue7nELp1L-iY5ST6OKlEhJo; datr=ZWq4YgmzX9ZT1JWqg_JKOBhe; dpr=1.25; shbid="12194\05448282355544\0541696081072:01f7d69ed0200ec38ee14a29d422334c1169d5d5169af9af61b29e2de4953b3be7303174"; shbts="1664545072\05448282355544\0541696081072:01f74d2063e970bc6f4b80a7a089c85acd30a459d48c285bf13282f13c9cb5e1a2bcddb8"; rur="NAO\05448282355544\0541696165910:01f7b9d8a44beaeeebd30b27f51a1bde5163a188b1d2da74c7d94b0e2a61223d51e79078'
     })
     contents = resp.json()['items'][0]['video_versions'][0]['url']
-    yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents=url+'</br>'+contents)
+    yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents=url+'<br/>'+contents)
     yag.close()
     print('发送邮件成功！')
     

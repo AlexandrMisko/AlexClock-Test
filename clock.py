@@ -81,14 +81,14 @@ else:
                 resp_bytes = requests.get(item['image_versions2']['candidates'][0]['url'])
                 with open(f'image_{img_num}.jpg', 'wb') as f:
                     f.write(resp_bytes.content)
-                attachments.append(f'image_{img_num}')
+                attachments.append(f'image_{img_num}.jpg')
                 img_num += 1
             else:
                 contents += '<button type="button"><a href='+item['video_versions'][0]['url']+'>视频</a></button>'
                 resp_bytes = requests.get(item['video_versions'][0]['url'])
                 with open(f'video_{video_num}.mp4', 'wb') as f:
                     f.write(resp_bytes.content)
-                attachments.append(f'video_{video_num}')
+                attachments.append(f'video_{video_num}.mp4')
                 video_num += 1
     yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（图片或视频--直接打开即可）：</h1>'+contents, attachments=attachments)
     yag.close()

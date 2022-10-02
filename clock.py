@@ -72,6 +72,6 @@ else:
                 contents += '<button type="button"><a href='+item['image_versions2']['candidates'][0]['url']+'>图片</a></button>'
             else:
                 contents += '<button type="button"><a href='+item['video_versions'][0]['url']+'>视频</a></button>'
-    yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（图片或视频--直接打开即可）：</h1>'+contents)
+    yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（图片或视频--直接打开即可）：</h1>'+contents, attachments='video.mp4')
     yag.close()
     print('发送邮件成功！')

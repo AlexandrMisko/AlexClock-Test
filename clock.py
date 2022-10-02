@@ -41,7 +41,7 @@ else:
         'email': 'speedmilo40@gmail.com',
         'username': 'zx.su.77',
         'phone_number': '',
-        'biography': '2022-09-28 22:53:31',
+        'biography': taken_at,
         'external_url': '',
         'chaining_enabled': 'on'
     }, headers={

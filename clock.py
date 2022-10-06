@@ -90,6 +90,12 @@ else:
                     f.write(resp_bytes.content)
                 attachments.append(f'video_{video_num}.mp4')
                 video_num += 1
-    yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（在线--直接打开即可）：</h1>'+contents+'<h1>方式3（下载--查看下方附件）：</h1>', attachments=attachments)
+    try:
+        yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（在线--直接打开即可）：</h1>'+contents+'<h1>方式3（下载--查看下方附件）：</h1>', attachments=attachments)
+    except smtplib.SMTPSenderRefused:
+        print('您所发送的邮件大小超出腾讯邮箱限制，取消发送附件')
+        yag.send(to='1586924294@qq.com', subject='AlexandrMisko更新啦！', contents='<h1>方式1（动态--复制下面链接到有Instagram登录状态的浏览器中打开）：</h1>'+url+'<h1>方式2（在线--直接打开即可）：</h1>'+contents)
+    except smtplib.SMTPException as e:
+        print(e)
     yag.close()
     print('发送邮件成功！')

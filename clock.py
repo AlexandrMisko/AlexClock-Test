@@ -4,7 +4,7 @@ import time
 import yagmail
     
 cookie = 'csrftoken=UcTWfv2NroJABRj4dIWfe38eRpb1CXU1; mid=YZIUAwALAAHIMaHw27iWm4uRNhXm; ig_did=267B8A84-7E4C-4AE8-8310-89537C6AE002; ig_nrcb=1; ds_user_id=48282355544; sessionid=48282355544%3APEepV6DWtSdrnu%3A16%3AAYfDY6v14Abvlk984makE8XOUIY4u7VylEKuqkwAuQ; datr=ZWq4YgmzX9ZT1JWqg_JKOBhe; dpr=1.25; shbid="12194\05448282355544\0541696081072:01f7d69ed0200ec38ee14a29d422334c1169d5d5169af9af61b29e2de4953b3be7303174"; shbts="1664545072\05448282355544\0541696081072:01f74d2063e970bc6f4b80a7a089c85acd30a459d48c285bf13282f13c9cb5e1a2bcddb8"; rur="ODN\05448282355544\0541696339750:01f7a0b617cde19a4547b0cb32fcc52a8e418b058f8f750fcc170e91e2c58c992d996ff7'
-yag = yagmail.SMTP(user='15639231608@163.ocm', password='LEECFKHBWENDINOW', host='smtp.163.com')
+yag = yagmail.SMTP(user='15639231608@163.com', password='LEECFKHBWENDINOW', host='smtp.163.com')
 resp = requests.get('https://i.instagram.com/api/v1/users/web_profile_info/?username=alexandrmisko', headers={
     'X-IG-App-ID': '936619743392459',
     'Cookie': cookie

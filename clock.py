@@ -4,9 +4,25 @@ import time
 import yagmail
 import smtplib
     
-cookie = 'csrftoken=UcTWfv2NroJABRj4dIWfe38eRpb1CXU1; mid=YZIUAwALAAHIMaHw27iWm4uRNhXm; ig_did=267B8A84-7E4C-4AE8-8310-89537C6AE002; ig_nrcb=1; ds_user_id=48282355544; sessionid=48282355544%3AxV8vTC6A68BT72%3A19%3AAYeoYtU7-RTM2eA5T_sCaocSQkKXCUK0LAfG11ofdg; datr=ZWq4YgmzX9ZT1JWqg_JKOBhe; dpr=1.25; shbid="12194\05448282355544\0541696751940:01f75de3ff73ba83cc132c46cf7f6ad404632b04aaae15061f319cbfb1f64ca1dadc18f4"; shbts="1665215940\05448282355544\0541696751940:01f795f049050d942048e1184934f3c5267754225ecbff3b1491356e18242ffad8d14aec"; rur="ODN\05448282355544\0541696752182:01f71aa91f597e8fea045ca1a8412baf4ac451ca51a4e53bacea6544eb2dcbe7d3f9b440'
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
+    'X-CSRFToken': 'NbIabgSFrRFILZeUU2i32IjGQsXuHJG1',
+    'Cookie': 'mid=YZIUAwALAAHIMaHw27iWm4uRNhXm; ig_did=267B8A84-7E4C-4AE8-8310-89537C6AE002; ig_nrcb=1; datr=ZWq4YgmzX9ZT1JWqg_JKOBhe; dpr=1.25; shbid="12194\05448282355544\0541696751940:01f75de3ff73ba83cc132c46cf7f6ad404632b04aaae15061f319cbfb1f64ca1dadc18f4"; shbts="1665215940\05448282355544\0541696751940:01f795f049050d942048e1184934f3c5267754225ecbff3b1491356e18242ffad8d14aec"; rur="NAO\05448282355544\0541697009014:01f7e715893ed1a44dfe0fcc8e7d1d0c5d0db04cc82c5566927f15bcdfa36bb8822ec567"; csrftoken=NbIabgSFrRFILZeUU2i32IjGQsXuHJG1',
+}
+data = {
+    "enc_password": "#PWD_INSTAGRAM_BROWSER:10:1665472743:AW5QACDp2YoYRsCDQ/34PUGkujdlgW/NZ0LY9uH03KtxGT0VRBxm/67FzpSzcGM42/OBKhceXtvKuEZ2dQL+12NdPQYQrTOmrFSIeXeF1fFWf+73j4NUhw7U8KvMBbxaU/2wuwK1gUpVtILX",
+    "username": "speedmilo40@gmail.com",
+    "queryParams": "{\"oneTapUsers\":\"[\\\"48282355544\\\"]\"}",
+    "optIntoOneTap": "false",
+    "stopDeletionNonce": "",
+    "trustedDeviceRecords": "{}"
+}
+session = requests.session()
+resp = session.post('https://www.instagram.com/accounts/login/ajax/', data=data, headers=headers)
+print(resp.text)
+
 yag = yagmail.SMTP(user='1586924294@qq.com', password='encbysssvjrujijb', host='smtp.qq.com')
-resp = requests.get('https://i.instagram.com/api/v1/users/web_profile_info/?username=alexandrmisko', headers={
+resp = session.get('https://i.instagram.com/api/v1/users/web_profile_info/?username=alexandrmisko', headers={
     'X-IG-App-ID': '936619743392459',
     'Cookie': cookie
 })
@@ -28,7 +44,7 @@ shortcode = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges']
 url = f'https://www.instagram.com/p/{shortcode}'
 print(url)
 print(taken_at)
-resp = requests.get('https://i.instagram.com/api/v1/accounts/edit/web_form_data/', headers={
+resp = session.get('https://i.instagram.com/api/v1/accounts/edit/web_form_data/', headers={
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
     'X-IG-App-ID': '936619743392459',
     'Cookie': cookie
@@ -37,7 +53,7 @@ store_at = resp.json()['form_data']['biography']
 if taken_at == store_at:
     print('无需更新')
 else:
-    resp = requests.post('https://i.instagram.com/api/v1/web/accounts/edit/', data={
+    resp = session.post('https://i.instagram.com/api/v1/web/accounts/edit/', data={
         'first_name': 'ZX+Su',
         'email': 'speedmilo40@gmail.com',
         'username': 'zx.su.77',
@@ -52,7 +68,7 @@ else:
         'Cookie': cookie
     })
     print(resp.text)
-    resp = requests.get(f'https://i.instagram.com/api/v1/media/{id}/info/', headers={
+    resp = session.get(f'https://i.instagram.com/api/v1/media/{id}/info/', headers={
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
         'X-IG-App-ID': '936619743392459',
         'Cookie': cookie
@@ -62,13 +78,13 @@ else:
     media_type = resp.json()['items'][0]['media_type']
     if media_type == 2:
         contents = '<button type="button"><a href='+resp.json()['items'][0]['video_versions'][0]['url']+'>视频</a></button>'
-        resp_bytes = requests.get(resp.json()['items'][0]['video_versions'][0]['url'])
+        resp_bytes = session.get(resp.json()['items'][0]['video_versions'][0]['url'])
         with open('video.mp4', 'wb') as f:
             f.write(resp_bytes.content)
         attachments.append('video.mp4')
     elif media_type == 1:
         contents = '<button type="button"><a href='+resp.json()['items'][0]['image_versions2']['candidates'][0]['url']+'>图片</a></button>'
-        resp_bytes = requests.get(resp.json()['items'][0]['image_versions2']['candidates'][0]['url'])
+        resp_bytes = session.get(resp.json()['items'][0]['image_versions2']['candidates'][0]['url'])
         with open('image.jpg', 'wb') as f:
             f.write(resp_bytes.content)
         attachments.append('image.jpg')
@@ -79,14 +95,14 @@ else:
         for item in items:
             if item['media_type'] == 1:
                 contents += '<button type="button"><a href='+item['image_versions2']['candidates'][0]['url']+'>图片</a></button>'
-                resp_bytes = requests.get(item['image_versions2']['candidates'][0]['url'])
+                resp_bytes = session.get(item['image_versions2']['candidates'][0]['url'])
                 with open(f'image_{img_num}.jpg', 'wb') as f:
                     f.write(resp_bytes.content)
                 attachments.append(f'image_{img_num}.jpg')
                 img_num += 1
             else:
                 contents += '<button type="button"><a href='+item['video_versions'][0]['url']+'>视频</a></button>'
-                resp_bytes = requests.get(item['video_versions'][0]['url'])
+                resp_bytes = session.get(item['video_versions'][0]['url'])
                 with open(f'video_{video_num}.mp4', 'wb') as f:
                     f.write(resp_bytes.content)
                 attachments.append(f'video_{video_num}.mp4')

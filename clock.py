@@ -62,14 +62,12 @@ else:
     }, headers={
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
         'X-IG-App-ID': '936619743392459',
-        'X-CSRFToken': 'UcTWfv2NroJABRj4dIWfe38eRpb1CXU1',
-        'Cookie': cookie
+        'X-CSRFToken': 'UcTWfv2NroJABRj4dIWfe38eRpb1CXU1'
     })
     print(resp.text)
     resp = session.get(f'https://i.instagram.com/api/v1/media/{id}/info/', headers={
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
-        'X-IG-App-ID': '936619743392459',
-        'Cookie': cookie
+        'X-IG-App-ID': '936619743392459'
     })
     contents = ''
     attachments = []

@@ -20,6 +20,7 @@ data = {
 session = requests.session()
 resp = session.post('https://www.instagram.com/accounts/login/ajax/', data=data, headers=headers)
 print(resp.text)
+print(resp.cookies)
 
 yag = yagmail.SMTP(user='1586924294@qq.com', password='encbysssvjrujijb', host='smtp.qq.com')
 resp = session.get('https://i.instagram.com/api/v1/users/web_profile_info/?username=alexandrmisko', headers={

@@ -22,7 +22,7 @@ session = requests.session()
 resp = session.post('https://www.instagram.com/accounts/login/ajax/', data=data, headers=headers)
 print(resp.text)
 obj_csrf = re.compile('csrftoken=(?P<csrftoken>.*?) ', re.S)
-csrftoken = obj_csrf.search(resp.cookies).group('csrftoken')
+csrftoken = obj_csrf.search(str(resp.cookies)).group('csrftoken')
 
 yag = yagmail.SMTP(user='1586924294@qq.com', password='encbysssvjrujijb', host='smtp.qq.com')
 resp = session.get('https://i.instagram.com/api/v1/users/web_profile_info/?username=alexandrmisko', headers={

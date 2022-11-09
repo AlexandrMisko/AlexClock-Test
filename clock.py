@@ -46,8 +46,6 @@ shortcode = resp.json()['data']['user']['edge_owner_to_timeline_media']['edges']
 url = f'https://www.instagram.com/p/{shortcode}'
 print(url)
 print(taken_at)
-resp = session.get(f"https://i.instagram.com/api/v1/media/{id}/info/")
-caption = resp.json()['items'][0]['caption']['text']
 resp = session.get('https://i.instagram.com/api/v1/accounts/edit/web_form_data/', headers={
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
     'X-IG-App-ID': '936619743392459',
@@ -74,6 +72,7 @@ else:
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
         'X-IG-App-ID': '936619743392459'
     })
+    caption = resp.json()['items'][0]['caption']['text']
     contents = ''
     attachments = []
     media_type = resp.json()['items'][0]['media_type']
